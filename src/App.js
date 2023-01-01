@@ -1,24 +1,28 @@
-import logo from './logo.svg';
+//import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import Menu from './Menu';
+import { Link, Route, BrowserRouter, Routes } from "react-router-dom";
+import Main from './Main';
 
 function App() {
+  const [show, setShow] = useState(false);
+  const handleShow = () => {
+    setShow(!show)
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <header className="App-header">
+          <button ><Link className="atag" to="">main</Link></button>
+          <button onClick={handleShow}>menu</button>
+        </header>
+        <main>
+          <Main />
+          <Menu state={show} setState={handleShow} />
+        </main>
+      </div>
+    </BrowserRouter>
   );
 }
 
